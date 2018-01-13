@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}VetSourced | My Jobs{% endblock %}
+
+{% block content %}
+
+
+{% for job in request.user.jobs.all %}
+  <div>
+    <b><a href="{% url 'jobs:detail' pk=job.pk %}">{{ job.title }}</a></b></br>
+    {{ job.posted_at}}
+    <a type="button" href="{% url 'jobs:delete-job' pk=job.pk %}">Delete</a>
+  </div>
+
+{% empty %}
+  <h3>You currently have no jobs posted!</h3>
+{% endfor %}
+<a href="{% url 'jobs:create-job' %}">Create New Job</a>
+
+
+{% endblock %}

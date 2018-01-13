@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}VetSourced | Home{% endblock %}
+
+{% block content %}
+{% if now >= job.expires %}
+<h1>
+  This jobs posting has expired.
+</h1>
+{% else %}
+<h2>
+    Title:</br>
+    {{ job.title }}</br>
+
+</h2>
+
+<h4>
+    Company:</br>
+    {{ job.company }}</br>
+</h4>
+
+<h4>
+    Location:</br>
+    {{ job.location }}</br>
+
+    Employment Type:</br>
+    {{ job.employment_type }}</br>
+
+    Compensation:</br>
+    {{ job.compensation }}</br>
+
+    Experience Required:</br>
+    {{ job.experience_required }}</br>
+
+    Education Required:</br>
+    {{ job.education }}</br>
+</h4>
+
+<h5>
+    Description:</br>
+    {{ job.description }}</br>
+
+    Posted:</br>
+    {{ job.posted_at }}</br>
+</h5>
+<h3>
+<a type="button" href="{{ job.job_link }}">Apply</a>
+</h3>
+{% endif %}
+
+{% endblock %}

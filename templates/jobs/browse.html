@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}VetSourced | Browse{% endblock %}
+
+{% block content %}
+
+{% for job in jobs %}
+<div>
+
+  <b><a href="{% url 'jobs:detail' pk=job.pk %}">{{ job.title }}</a></b></br>
+  <b>{{ job.company }}</b></br>
+  <p>{{ job.posted_at }}</p>
+
+</div>
+{% endfor %}
+{% endblock %}

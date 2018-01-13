@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+
+{% block title %}VetSourced | {{ user.username }}{% endblock %}
+
+{% block content %}
+{% if request.user.is_employer %}
+
+  <h2>{{ request.user.employer.company }}'s Profile</h2>
+  <h3>About {{ request.user.employer.company}}: {{ request.user.employer.about }}</h3>
+  <h3>Industry: {{ request.user.employer.industry }}</h3>
+  <h3>Location: {{ request.user.employer.location }}</h3>
+
+{% else %}
+
+  <h1>{{ user.username }}'s Profile</h1>
+
+      <h3>About Me: </br>
+        {{ user.bio }}</h3>
+      <h3>Current Industry: {{ user.industry }}</h3>
+      <h3>Current Job: {{ user.current_job }}</h3>
+      <h3>Desired Industry: {{ user.desired_industry }}</h3>
+      <h3>Desired Job: {{ user.desired_job }}</h3>
+
+
+{% endif %}
+
+{% if request.user.pk == user.pk and not request.user.is_employer %}
+<a type="button" href="{% url 'accounts:update' %}">Update Profile</a>
+{% elif request.user.pk == user.pk and request.user.is_employer %}
+<a type="button" href="{% url 'accounts:employer-update' %}">Update Profile</a>
+<a type="button" href="{% url 'accounts:employer-jobs' %}">My Jobs</a>
+{% endif %}
+
+{% endblock %}

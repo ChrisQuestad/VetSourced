@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}VetSourced | Register{% endblock %}
+
+{% block content %}
+<h2>Thank you for choosing Vetsourced, Good Luck!</h2>
+<h4>Jobs For Veterans, By Veterans</h4>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <div><button>Register!</button></div>
+</form>
+{% endblock %}

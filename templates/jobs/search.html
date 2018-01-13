@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% for job in jobs %}
+
+<div>
+
+  <b><a href="{% url 'jobs:detail' pk=job.pk %}">{{ job.title }}</a></b></br>
+  <b>{{ job.company }}</b></br>
+  {{ job.posted_at }}
+
+</div>
+{% empty %}
+<h3>No jobs found that match your search for:"{{ query }}"</h3>
+{% endfor %}
+{% endblock %}

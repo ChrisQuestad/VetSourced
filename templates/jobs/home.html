@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}VetSourced | Home{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h4>Welcome back {{ request.user.username }}</h4>
+{% else %}
+<h4>Welcome to VetSourced!</h4>
+<h4>Jobs For Veterans, By Veterans</h4>
+{% endif %}
+
+
+
+{% for job in jobs %}
+<div>
+
+  <b><a href="{% url 'jobs:detail' pk=job.pk %}">{{ job.title }}</a></b></br>
+  <b>{{ job.company }}</b></br>
+  <p>{{ job.posted_at }}</p>
+
+</div>
+{% endfor %}
+
+{% endblock %}
