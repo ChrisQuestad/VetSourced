@@ -1,5 +1,4 @@
 import os
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions',
+    'social_django',
     'corsheaders',
     'accounts',
     'jobs',
@@ -40,10 +40,16 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware'
     # 'accounts.middleware.FinishProfileMiddleware',
 ]
 
 
+AUTHENTICATION_BACKENDS = (
+    'social.backends.linkedin.LinkedinOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 
 
@@ -62,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -132,3 +140,24 @@ AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = 'jobs:home'
 LOGOUT_REDIRECT_URL = 'jobs:browse'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'jobs:home'
+
+# Social django
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '439168495583-ie7hgbq6kpp7k36brsvhsnrs3ng9i2s6.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '1MMxmUo-fGjtnJUJHtfDHU4D'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '8687h8sdphieo7'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'MCzCqjIpQ65Ujs3I'
+
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'accounts.pipeline.save_profile',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)

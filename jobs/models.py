@@ -29,3 +29,5 @@ class Job(models.Model):
     employer = models.ForeignKey('accounts.User',
                                     related_name='jobs',
                                     on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title + ' ' + self.company

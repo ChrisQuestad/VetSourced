@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 
 {% block title %}VetSourced | Login{% endblock %}
-
+<head>
+  <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+</head>
 
 
 {% block content %}
@@ -12,4 +14,6 @@
     {{ form.as_p }}
     <div><button>Login!</button></div>
   </form>
+   <a href="{% url 'social:begin' backend='linkedin-oauth2' %}"><i class="fab fa-linkedin"></i>Login with LinkedIn</a>
+  <a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-google"></i>Login with Google</a>
 {% endblock %}
