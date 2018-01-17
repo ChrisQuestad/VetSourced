@@ -16,7 +16,7 @@ from .permissions import employer_login_required
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'industry', 'current_job', 'bio', 'desired_industry', 'desired_job')
+        fields = ('username', 'first_name', 'last_name', 'industry', 'current_job', 'bio', 'desired_industry', 'desired_job')
 
 class EmployerCreationForm(UserCreationForm):
     class Meta:

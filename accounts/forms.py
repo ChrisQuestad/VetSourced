@@ -12,4 +12,4 @@ class EmployerForm(ModelForm):
 class UpdateProfileForm(ModelForm):
     class Meta:
         model = User
-        fields = ['bio', 'industry', 'current_job', 'desired_industry', 'desired_job']
+        fields = ['first_name', 'last_name', 'bio', 'industry', 'current_job', 'desired_industry', 'desired_job']

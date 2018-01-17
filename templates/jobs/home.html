@@ -6,7 +6,7 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-<h4>Welcome back {{ request.user.username }}</h4>
+<h4>Welcome back {{ request.user.first_name }}</h4>
 {% else %}
 <h4>Welcome to VetSourced!</h4>
 <h4>Jobs For Veterans, By Veterans</h4>

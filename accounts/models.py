@@ -15,6 +15,9 @@ class User(AbstractUser):
     desired_job = models.CharField(max_length=64, blank=True, null=True)
     # Verification of Employee/Employer
     is_employer = models.BooleanField(default=False)
+    # User Name
+    first_name = models.CharField(max_length=24, blank=True, null=True)
+    last_name = models.CharField(max_length=24, blank=True, null=True)
 
 
     employer = models.OneToOneField('accounts.EmployerProfile',
